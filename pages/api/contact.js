@@ -4,7 +4,7 @@ const { readFileSync } = require("fs");
 export default async (req, res) => {
   const templateDirectory = resolve(process.cwd(), "email");
   const emailTemplate = readFileSync(
-    join(templateDirectory, "template.mjml"),
+    join(templateDirectory, "a", "template.mjml"),
     "utf8"
   );
 
