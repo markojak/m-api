@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "pages/api/hello.ts": {
+      "includeFiles": "extensions/publish/README.md"
+    },
+    "pages/api/hello.js": {
+      "includeFiles": "extensions/publish/README.md"
+    }
+  }
+}
