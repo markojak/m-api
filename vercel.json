@@ -1,6 +1,6 @@
 {
   "functions": {
-    "pages/api/contact.js": {
+    "pages/api/contact.ts": {
       "includeFiles": "email/**/template.mjml"
     }
   }
