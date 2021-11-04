@@ -2,9 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { join, resolve } from "path";
-import fs from "fs";
-
-const extensionDirectory = resolve(process.cwd(), "extensions");
+import { readFileSync } from "fs";
 
 type Data = {
   content: string;
@@ -20,8 +18,8 @@ export default function handler(
 ) {
   if (req.method === "GET") {
     const { slug } = req.query;
-
-    const ext = fs.readFileSync(
+    const extensionDirectory = resolve(process.cwd(), "extensions");
+    const ext = readFileSync(
       join(
         extensionDirectory,
         Array.isArray(slug) ? slug[0] : slug,
