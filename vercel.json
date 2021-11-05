@@ -1,7 +1,7 @@
 {
   "functions": {
     "pages/api/contact.ts": {
-      "includeFiles": "extensions/**/README.md"
+      "includeFiles": "email/**/README.md"
     }
   }
 }
