@@ -26,7 +26,7 @@ export default function handler(
   (typeof slugs === "string" ? [slugs] : slugs).forEach((slug: string) => {
     const templateDirectory = resolve(process.cwd(), "email");
     const emailTemplate = readFileSync(
-      join(templateDirectory, slug, "template.mjml"),
+      join(templateDirectory, slug, "index.md"),
       "utf8"
     );
     if (!emailTemplate) {
