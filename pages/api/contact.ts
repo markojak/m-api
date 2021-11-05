@@ -16,24 +16,30 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Error>
 ) {
-  const { slugs } = req.query;
+  if (req.method === "POST") {
+    const { slugs } = req.body;
 
-  const data: Data = {
-    deleted: [],
-    updated: [],
-  };
+    const data: Data = {
+      deleted: [],
+      updated: [],
+    };
 
-  (typeof slugs === "string" ? [slugs] : slugs).forEach((slug: string) => {
-    const templateDirectory = resolve(process.cwd(), "extensions");
-    const emailTemplate = readFileSync(
-      join(templateDirectory, slug, "index.md"),
-      "utf8"
-    );
-    if (!emailTemplate) {
-      data.deleted.push(slug);
-    } else {
-      data.updated.push(emailTemplate);
-    }
-  });
-  return res.status(200).json(data);
+    (typeof slugs === "string" ? [slugs] : slugs).forEach((slug: string) => {
+      const templateDirectory = resolve(process.cwd(), "extensions");
+      const emailTemplate = readFileSync(
+        join(templateDirectory, slug, "index.md"),
+        "utf8"
+      );
+      if (!emailTemplate) {
+        data.deleted.push(slug);
+      } else {
+        data.updated.push(emailTemplate);
+      }
+    });
+    return res.status(200).json(data);
+  } else {
+    return res.status(404).json({
+      error: "Not Support Method",
+    });
+  }
 }
