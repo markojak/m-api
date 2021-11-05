@@ -16,8 +16,8 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Error>
 ) {
-  if (req.method === "POST") {
-    const { slugs } = req.body;
+  if (req.method === "GET") {
+    const { slugs } = req.query;
 
     const data: Data = {
       deleted: [],
