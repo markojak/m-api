@@ -4,8 +4,7 @@ import { resolve, join } from "path";
 import { readFileSync } from "fs";
 
 type Data = {
-  updated: string[];
-  deleted: string[];
+  content: string;
 };
 
 type Error = {
@@ -18,25 +17,16 @@ export default function handler(
 ) {
   if (req.method === "GET") {
     const { slugs } = req.query;
+    const slug = typeof slugs === "string" ? slugs : slugs[0];
 
-    const data: Data = {
-      deleted: [],
-      updated: [],
-    };
-
-    (typeof slugs === "string" ? [slugs] : slugs).forEach((slug: string) => {
-      const templateDirectory = resolve(process.cwd(), "extensions");
-      const emailTemplate = readFileSync(
-        join(templateDirectory, slug, "README.md"),
-        "utf8"
-      );
-      if (!emailTemplate) {
-        data.deleted.push(slug);
-      } else {
-        data.updated.push(emailTemplate);
-      }
+    const templateDirectory = resolve(process.cwd(), "extensions");
+    const emailTemplate = readFileSync(
+      join(templateDirectory, slug, "README.md"),
+      "utf8"
+    );
+    return res.status(200).json({
+      content: emailTemplate,
     });
-    return res.status(200).json(data);
   } else {
     return res.status(404).json({
       error: "Not Support Method",
