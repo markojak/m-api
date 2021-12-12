@@ -16,17 +16,15 @@ export default function handler(
   res: NextApiResponse<Data | Error>
 ) {
   if (req.method === "GET") {
-    const { slugs } = req.query;
-    const slug = typeof slugs === "string" ? slugs : slugs[0];
 
-    const templateDirectory = resolve(process.cwd(), "extensions");
-    const emailTemplate = readFileSync(
-      join(templateDirectory, slug, "index.md"),
+    const Directory = resolve(process.cwd(), "extensions");
+    const resume = readFileSync(
+      join(Directory, "index.md"),
       "utf8"
     );
-    return res.status(200).json({
-      content: emailTemplate,
-    });
+    return res.status(200).send(
+      resume
+    );
   } else {
     return res.status(404).json({
       error: "Not Support Method",
