@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
           <a href="https://twitter.com/markojak_" className={styles.card}>
             <h2>Twitter &rarr;</h2>
-            <p>Connect / Follow me on Twitter and show me what you're working on 💪 </p>
+            <p>Connect / Follow me on Twitter and show me what you&apos;re working on 💪 </p>
           </a>
 
         </div>
