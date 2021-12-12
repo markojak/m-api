@@ -17,12 +17,12 @@ export default function handler(
 ) {
   if (req.method === "GET") {
 
-    const Directory = resolve(process.cwd(), "extensions");
+    const Directory = resolve(process.cwd(), "docs");
     const resume = readFileSync(
       join(Directory, "index.md"),
       "utf8"
     );
-    return res.status(200).send(
+    return res.status(200).end(
       resume
     );
   } else {
