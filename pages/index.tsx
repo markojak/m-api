@@ -15,13 +15,12 @@ const Home: NextPage = () => {
       <main className={styles.main}>
 
         <p className={styles.description}>
-          Probably nothing to see here... <br></br>
           <code className={styles.code}>markojak.com</code>
         </p>
 
         <div className={styles.grid}>
-          <a href="https://stumbling.substack.com" className={styles.card}>
-            <h2>Substack &rarr;</h2>
+          <a href="https://markojak.com" className={styles.card}>
+            <h2>Blog &rarr;</h2>
             <p>Read my essays on building products that people want and finding meaning in your life. </p>
           </a>
 
